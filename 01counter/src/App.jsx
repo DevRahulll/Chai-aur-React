@@ -7,8 +7,10 @@ function App() {
   let [counter,setcounter]=useState(10);
   let addValue=()=>{
     if(counter<21){
-      setcounter(counter+1)
+      // setcounter(counter+1)
       console.log("Increment : ",counter);
+      // setcounter(prevCounter=>prevCounter+1)
+      // setcounter(prevCounter=>prevCounter+1)
     }
     else{
       console.log("Out of Range");
