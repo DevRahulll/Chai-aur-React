@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, useRef} from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 
 function App() {
   const [length, setLength] = useState(8);
@@ -6,7 +6,7 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
   // useRef hook
-  const passwordRef=useRef(null);
+  const passwordRef = useRef(null);
 
   const passwordGenerator = useCallback(() => {
     let pass = ""
@@ -23,11 +23,11 @@ function App() {
 
   }, [length, numberAllowed, charAllowed, setPassword])
 
-  const copyPasswordToClipboard=useCallback(()=>{
+  const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0,55);
+    passwordRef.current?.setSelectionRange(0, 55);
     window.navigator.clipboard.writeText(password)
-  },[password])
+  }, [password])
 
   useEffect(() => {
     passwordGenerator()
@@ -45,7 +45,7 @@ function App() {
             ref={passwordRef}
           />
           <button className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
-          onClick={copyPasswordToClipboard}
+            onClick={copyPasswordToClipboard}
           >copy</button>
         </div>
         <div className='flex text-sm gap-x-2'>
@@ -58,28 +58,29 @@ function App() {
               onChange={(e) => { setLength(e.target.value) }}
             />
             <label>Length:{length}</label>
-            <div className='flex items-center gap-x-1'>
-              <input type="checkbox"
-                defaultChecked={numberAllowed}
-                id='numberInput'
-                onChange={() => {
-                  setNumberAllowed((prev) => !prev);
-                }}
-              />
-              <label htmlFor="numberInput">Numbers</label>
-            </div>
-            <div className='flex items-center gap-x-1'>
-              <input type="checkbox"
-                defaultChecked={numberAllowed}
-                id='characterInput'
-                onChange={() => {
-                  setNumberAllowed((prev) => !prev);
-                }}
-              />
-              <label htmlFor="characterInput">Characters</label>
-            </div>
+          </div>
+          <div className='flex items-center gap-x-1'>
+            <input type="checkbox"
+              defaultChecked={numberAllowed}
+              id='numberInput'
+              onChange={() => {
+                setNumberAllowed((prev) => !prev);
+              }}
+            />
+            <label htmlFor="numberInput">Numbers</label>
+          </div>
+          <div className='flex items-center gap-x-1'>
+            <input type="checkbox"
+              defaultChecked={numberAllowed}
+              id='characterInput'
+              onChange={() => {
+                setCharAllowed((prev) => !prev);
+              }}
+            />
+            <label htmlFor="characterInput">Characters</label>
           </div>
         </div>
+
       </div>
     </>
   )
