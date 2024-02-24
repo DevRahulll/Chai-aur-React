@@ -1,7 +1,7 @@
 import React from 'react'
-import { Container, Logo } from '../index.js'
+import { Container, Logo, LogoutBtn } from '../index.js'
 import { Link, useNavigate } from 'react-router-dom'
-import { UseSelector, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { useNavigation } from 'react-router-dom'
 
 const Header = () => {
@@ -54,6 +54,11 @@ const Header = () => {
                                 >{item.name}</button>
                             </li>
                         ):null
+                        )}
+                        {authStatus && (
+                            <li>
+                                <LogoutBtn/>
+                            </li>
                         )}
                     </ul>
                 </nav>
